@@ -1,20 +1,27 @@
-import { getHumeAccessToken } from "@/utils/getHumeAccessToken";
-import dynamic from "next/dynamic";
+import { HeroAurora } from "@/components/blocks/hero-aurora";
+import { FeaturesBento } from "@/components/blocks/features-bento";
+import { FaqAccordion } from "@/components/blocks/faq-accordion";
+import { CtaVortex } from "@/components/blocks/cta-vortex";
+import { FooterColumns } from "@/components/blocks/footer-columns";
 
-const Chat = dynamic(() => import("@/components/Chat"), {
-  ssr: false,
-});
+export const metadata = {
+  title: "bpd — a voice assistant for your Markdown knowledge base",
+  description:
+    "Talk to your own documents. A Hume-powered voice assistant that searches your Markdown files, cites the passages it used, and says when the answer isn't there.",
+};
 
-export default async function Page() {
-  const accessToken = await getHumeAccessToken();
-
-  if (!accessToken) {
-    throw new Error('Unable to get access token');
-  }
-
+/**
+ * Landing page. Sections are Velora UI blocks (MIT) — see components/blocks/.
+ * The voice assistant itself lives at /talk.
+ */
+export default function LandingPage() {
   return (
-    <div className={"grow flex flex-col"}>
-      <Chat accessToken={accessToken} />
-    </div>
+    <main className="relative">
+      <HeroAurora />
+      <FeaturesBento />
+      <FaqAccordion />
+      <CtaVortex />
+      <FooterColumns />
+    </main>
   );
 }

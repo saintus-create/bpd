@@ -2,8 +2,11 @@
 const nextConfig = {
   transpilePackages: ['hume', '@humeai/voice-react'],
   // Ensure Markdown sources are included in the serverless function bundle on Vercel.
-  outputFileTracingIncludes: {
-    '/api/knowledge-search': ['./knowledge/**/*'],
+  // In Next 14 this option lives under `experimental`; a top-level key is ignored.
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/knowledge-search': ['./knowledge/**/*'],
+    },
   },
   webpack: (config, { isServer }) => {
     config.resolve.extensionAlias = {

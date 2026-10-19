@@ -28,6 +28,12 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+  /* Velora UI brand tokens (landing page accents/gradients) */
+  --brand: oklch(0.546 0.245 263);
+  --brand-foreground: oklch(0.985 0 0);
+  --brand-from: oklch(0.546 0.245 263);
+  --brand-via: oklch(0.623 0.214 260);
+  --brand-to: oklch(0.685 0.169 237);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -64,6 +70,12 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+  /* Velora UI brand tokens (dark) */
+  --brand: oklch(0.623 0.214 260);
+  --brand-foreground: oklch(0.985 0 0);
+  --brand-from: oklch(0.623 0.214 260);
+  --brand-via: oklch(0.707 0.165 255);
+  --brand-to: oklch(0.746 0.16 233);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -111,6 +123,28 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Velora UI additions */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-from: var(--brand-from);
+  --color-brand-via: var(--brand-via);
+  --color-brand-to: var(--brand-to);
+  --font-heading: var(--font-sans);
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-gradient: gradient 6s ease infinite;
+  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
+  --animate-aurora-1: aurora-1 14s ease-in-out infinite alternate;
+  --animate-aurora-2: aurora-2 18s ease-in-out infinite alternate;
+  --animate-aurora-3: aurora-3 22s ease-in-out infinite alternate;
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-retro-grid: retro-grid 18s linear infinite;
+  --animate-rainbow: rainbow var(--rainbow-duration, 4s) linear infinite;
+  --animate-ripple: ripple 600ms ease-out forwards;
+  --animate-moving-border: moving-border var(--mb-duration, 4s) linear infinite;
+  --animate-flicker: flicker 3s steps(1, end) infinite;
+  --animate-ripple-ring: ripple-ring 3s ease-out infinite;
 }
 
 @layer base {
@@ -119,5 +153,95 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ---- Velora UI keyframes (MIT) ---- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--gap))); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * -1px)) rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * -1px)) rotate(calc((var(--angle) * 1deg + 360deg) * -1));
+  }
+}
+@keyframes aurora-1 {
+  0% { transform: translate(-10%, -12%) scale(1); }
+  50% { transform: translate(12%, 8%) scale(1.25); }
+  100% { transform: translate(-6%, 14%) scale(0.95); }
+}
+@keyframes aurora-2 {
+  0% { transform: translate(12%, 10%) scale(1.1); }
+  50% { transform: translate(-14%, -6%) scale(0.9); }
+  100% { transform: translate(8%, -12%) scale(1.2); }
+}
+@keyframes aurora-3 {
+  0% { transform: translate(0%, 16%) scale(0.95); }
+  50% { transform: translate(10%, -10%) scale(1.15); }
+  100% { transform: translate(-12%, 4%) scale(1); }
+}
+@keyframes meteor {
+  0% { transform: rotate(var(--meteor-angle, 215deg)) translateX(0); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: rotate(var(--meteor-angle, 215deg)) translateX(-600px); opacity: 0; }
+}
+@keyframes retro-grid {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+@keyframes rainbow {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+@keyframes ripple {
+  from { transform: scale(0); opacity: 0.35; }
+  to { transform: scale(1); opacity: 0; }
+}
+@keyframes moving-border {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+@keyframes flicker {
+  0%, 100% { opacity: var(--flicker-max, 0.45); }
+  50% { opacity: var(--flicker-min, 0.08); }
+}
+@keyframes ripple-ring {
+  from { transform: scale(0.6); opacity: 0.5; }
+  to { transform: scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-meteor,
+  .animate-retro-grid,
+  .animate-marquee,
+  .animate-marquee-vertical,
+  .animate-shimmer,
+  .animate-gradient,
+  .animate-orbit,
+  .animate-aurora-1,
+  .animate-aurora-2,
+  .animate-aurora-3,
+  .animate-rainbow,
+  .animate-ripple,
+  .animate-moving-border,
+  .animate-flicker,
+  .animate-ripple-ring {
+    animation: none;
   }
 }
