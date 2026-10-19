@@ -297,7 +297,7 @@ function AnalyticsVisual() {
         <div>
           <p className="text-xs font-medium text-muted-foreground">Documents indexed</p>
           <p className="mt-1 text-3xl font-semibold tracking-tight">
-            <NumberTicker value={9} suffix=" files" />
+            <NumberTicker value={7} suffix=" files" />
           </p>
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">

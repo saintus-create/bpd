@@ -33,7 +33,10 @@ async function markdownFiles(dir: string): Promise<string[]> {
     if (entry.name.startsWith(".")) continue;
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) files.push(...await markdownFiles(fullPath));
-    else if (/\.md$/i.test(entry.name)) files.push(fullPath);
+    // Folder READMEs are navigation, not knowledge: they repeat every topic
+    // name and would otherwise outrank the real documents.
+    else if (/\.md$/i.test(entry.name) && !/^readme\.md$/i.test(entry.name))
+      files.push(fullPath);
   }
   return files;
 }
