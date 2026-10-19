@@ -16,9 +16,8 @@ const STOP_WORDS = new Set([
 ]);
 
 function terms(value: string): string[] {
-  return [...new Set(
-    value.toLowerCase().match(/[a-z0-9][a-z0-9'-]*/g) ?? []
-  )].filter((word) => word.length > 1 && !STOP_WORDS.has(word));
+  return [...new Set(value.toLowerCase().match(/[a-z0-9][a-z0-9'-]*/g) ?? [])]
+    .filter((word) => word.length > 1 && !STOP_WORDS.has(word));
 }
 
 async function markdownFiles(dir: string): Promise<string[]> {
@@ -56,6 +55,24 @@ function scorePassage(queryTerms: string[], passage: string): number {
     score += Math.min(passageTerms.filter((word) => word === term).length, 3);
   }
   return score;
+}
+
+export async function GET() {
+  const files = await markdownFiles(KNOWLEDGE_DIR);
+  return NextResponse.json({
+    status: "ok",
+    endpoint: "/api/knowledge-search",
+    method: "POST",
+    knowledgeDirectory: "knowledge/",
+    markdownFiles: files.length,
+    sampleSources: files.slice(0, 10).map((file) =>
+      path.relative(KNOWLEDGE_DIR, file).split(path.sep).join("/")
+    ),
+    toolName: "search_knowledge",
+    message: files.length
+      ? "Knowledge search is ready. Configure the Hume EVI custom tool named search_knowledge to use this endpoint."
+      : "No Markdown files were found. Add .md files under knowledge/."
+  });
 }
 
 export async function POST(request: Request) {
@@ -108,7 +125,7 @@ export async function POST(request: Request) {
         ).join("\n\n")
       : "No relevant passages were found in the Markdown knowledge base. Do not invent an answer from these documents.";
 
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true, data, resultsCount: results.length });
   } catch {
     return NextResponse.json({
       success: false,
