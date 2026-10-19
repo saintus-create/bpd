@@ -32,23 +32,24 @@ export function HeroAurora() {
       <div className="relative mx-auto max-w-3xl text-center">
         <BlurFade>
           <a
-            href="#"
+            href="/topics"
             className="inline-flex items-center gap-2 rounded-full border bg-background/60 px-3 py-1 text-sm text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
           >
             <SparklesIcon className="size-4 text-primary" />
-            Hume EVI + your Markdown knowledge base
+            Mental health, answered out loud
             <ArrowRightIcon className="size-3.5" />
           </a>
         </BlurFade>
 
         <h1 className="mt-8 text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-          Talk to{" "}
-          <AnimatedGradientText>your own documents</AnimatedGradientText>
+          Ask about{" "}
+          <AnimatedGradientText>mental health</AnimatedGradientText>
         </h1>
 
         <p className="mx-auto mt-6 max-w-xl text-lg text-pretty text-muted-foreground">
-          A voice assistant that answers from your Markdown files. It searches
-          them, cites the passages it used, and tells you plainly when the
+          A voice assistant that answers from a curated set of mental health
+          documents — anxiety, depression, treatment options, clinical trials
+          and crisis support. It names the passage it used, and says when the
           answer isn&apos;t there.
         </p>
 
@@ -62,8 +63,8 @@ export function HeroAurora() {
               Start a call
             </ShimmerButton>
             <Button variant="ghost" size="lg" asChild>
-              <a href="#how">
-                See how it works <ArrowRightIcon />
+              <a href="/topics">
+                Browse topics <ArrowRightIcon />
               </a>
             </Button>
           </div>
@@ -71,8 +72,8 @@ export function HeroAurora() {
 
         <BlurFade delay={0.4}>
           <p className="mt-8 text-sm text-muted-foreground">
-            Runs on Hume&apos;s Empathic Voice Interface · answers grounded in
-            your own files
+            Sample documents for a demo · general information, not medical
+            advice
           </p>
         </BlurFade>
       </div>

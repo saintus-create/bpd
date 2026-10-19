@@ -12,44 +12,44 @@ import { DotPattern } from "@/components/velora/grid-pattern";
 
 const FAQS = [
   {
-    question: "Where do my documents go?",
+    question: "Is this medical advice?",
     answer:
-      "Put .md files in the knowledge/ folder — subfolders work too. The search walks the whole folder, so anything you add there is picked up automatically.",
+      "No. The knowledge base holds sample documents written for this demo. It is general information, not a diagnosis or a treatment plan, and it does not replace a qualified professional.",
+  },
+  {
+    question: "Where do the answers come from?",
+    answer:
+      "From the Markdown files in the knowledge folder: an overview, anxiety, depression, treatment options, clinical trials and crisis support.",
   },
   {
     question: "How does the assistant find an answer?",
     answer:
-      "When you ask something that depends on your documents, it calls the search_knowledge tool. That endpoint splits each file into paragraphs, scores them against your question and returns the five best matches.",
+      "It calls the search_knowledge tool. That endpoint splits each file into paragraphs, scores them against your question and returns the five best matches with their filenames.",
   },
   {
-    question: "What if the answer isn't in my documents?",
+    question: "What if the answer isn't in the documents?",
     answer:
       "It tells you the knowledge base doesn't cover it rather than guessing. The endpoint returns an explicit 'no relevant passages' message in that case.",
   },
   {
+    question: "What should I do in a crisis?",
+    answer:
+      "Contact a helpline or emergency services rather than relying on this demo. In India, Tele-MANAS on 14416 is free and available 24/7, and the emergency number is 112. The crisis support page lists more, including lines outside India.",
+  },
+  {
+    question: "Are the clinical trials real?",
+    answer:
+      "No — the listings on the trials page are invented examples used to show the layout. For real studies, use the Clinical Trials Registry of India or ClinicalTrials.gov.",
+  },
+  {
     question: "What powers the voice?",
     answer:
-      "The voice layer is Hume's Empathic Voice Interface. Retrieval runs inside this Next.js app, so your documents stay within your own deployment.",
+      "The voice layer is Hume's Empathic Voice Interface. Retrieval runs inside this Next.js app, so the documents stay within your own deployment.",
   },
   {
-    question: "Do I need to set anything up in Hume?",
+    question: "Can I add my own documents?",
     answer:
-      "Yes — register a custom tool named search_knowledge in your EVI configuration and point it at /api/knowledge-search. The code can't create that dashboard setting for you.",
-  },
-  {
-    question: "How accurate is the search?",
-    answer:
-      "It's keyword matching, not semantic search: it can miss a passage worded very differently from your question. Fine for a focused corpus; swap in embeddings for a large one.",
-  },
-  {
-    question: "Can I check what it found?",
-    answer:
-      "Yes. Every returned passage is labelled with its source filename, so you can open the file and read it yourself.",
-  },
-  {
-    question: "What file types are supported?",
-    answer:
-      "Markdown (.md) today. Anything else in the folder is ignored by the search.",
+      "Yes — drop .md files into the knowledge folder and they are picked up automatically, subfolders included.",
   },
 ];
 
@@ -106,10 +106,10 @@ export function FaqAccordion() {
               <MessageCircleIcon className="size-6" />
             </span>
             <div className="flex-1">
-              <h3 className="font-semibold">Want the exact wiring?</h3>
+              <h3 className="font-semibold">Need help right now?</h3>
               <p className="mt-1 text-sm text-pretty text-muted-foreground">
-                The setup guide covers the endpoint, the Hume tool schema and
-                the system prompt.
+                Crisis lines in India and internationally, and what to do while
+                you wait.
               </p>
             </div>
             <Button
@@ -117,9 +117,9 @@ export function FaqAccordion() {
               size="lg"
               className="h-10 shrink-0 rounded-full px-5"
             >
-              <a href="#how">
+              <a href="/resources">
                 <MessageCircleIcon aria-hidden />
-                Read the guide
+                Crisis support
               </a>
             </Button>
           </div>

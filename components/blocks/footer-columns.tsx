@@ -2,30 +2,44 @@ import { Badge } from "@/components/ui/badge";
 
 const BRAND = "bpd";
 const TAGLINE =
-  "A voice assistant grounded in your own Markdown knowledge base.";
+  "A voice assistant grounded in sample mental health documents.";
 
 const COLUMNS = [
   {
-    title: "Product",
+    title: "Explore",
     links: [
-      { label: "How it works" },
-      { label: "Knowledge search" },
-      { label: "Voice assistant", badge: "New" },
-      { label: "Changelog" },
-      { label: "Status" },
+      { label: "Topics", href: "/topics" },
+      { label: "Clinical trials", href: "/clinical-trials" },
+      { label: "Crisis support", href: "/resources" },
+      { label: "Voice assistant", href: "/talk", badge: "New" },
     ],
   },
   {
-    title: "Resources",
-    links: [{ label: "Documentation" }, { label: "Setup guide" }, { label: "API reference" }, { label: "Community" }],
+    title: "Learn",
+    links: [
+      { label: "Overview", href: "/topics#overview" },
+      { label: "Anxiety", href: "/topics#anxiety" },
+      { label: "Depression", href: "/topics#depression" },
+      { label: "Treatment options", href: "/topics#treatment" },
+    ],
   },
   {
-    title: "Company",
-    links: [{ label: "About" }, { label: "Contact" }],
+    title: "Sources",
+    links: [
+      { label: "WHO", href: "https://www.who.int/health-topics/mental-health" },
+      { label: "NIMH", href: "https://www.nimh.nih.gov" },
+      { label: "NHS", href: "https://www.nhs.uk/mental-health/" },
+      { label: "CTRI", href: "https://ctri.nic.in" },
+    ],
   },
   {
-    title: "Solutions",
-    links: [{ label: "Startups" }, { label: "Enterprise" }],
+    title: "About",
+    links: [
+      { label: "How it works", href: "/#how" },
+      { label: "Setup guide", href: "/#how" },
+      { label: "Status", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
   },
 ];
 
@@ -65,7 +79,7 @@ export function FooterColumns() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
           <div className="max-w-xs">
-            <a href="#" className={`inline-flex items-center gap-2.5 text-lg font-semibold tracking-tight ${focusRing}`}>
+            <a href="/" className={`inline-flex items-center gap-2.5 text-lg font-semibold tracking-tight ${focusRing}`}>
               <span aria-hidden className="grid size-8 place-items-center rounded-[0.6rem] bg-linear-to-br from-brand-from to-brand-to text-brand-foreground">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-4.5">
                   <path d="M5 20 12 4l7 16M8 14h8" />
@@ -98,7 +112,7 @@ export function FooterColumns() {
                 <ul className="mt-4 space-y-3 text-sm">
                   {column.links.map((link) => (
                     <li key={link.label} className="flex items-center gap-2">
-                      <a href="#" className={`text-muted-foreground transition-colors hover:text-foreground ${focusRing}`}>
+                      <a href={link.href ?? "#"} className={`text-muted-foreground transition-colors hover:text-foreground ${focusRing}`}>
                         {link.label}
                       </a>
                       {link.badge && (
@@ -115,7 +129,9 @@ export function FooterColumns() {
         </div>
 
         <div className="mt-16 flex flex-col-reverse gap-4 border-t pt-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 {BRAND}, Inc. All rights reserved.</p>
+          <p>
+            © 2026 {BRAND}. Sample content for a demo — not medical advice.
+          </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {LEGAL.map((label) => (

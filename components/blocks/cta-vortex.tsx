@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Vortex } from "@/components/velora/vortex";
 
 const EYEBROW = "Ready when you are";
-const TITLE = "Give your documents a voice";
+const TITLE = "Ask your first question";
 const COPY =
-  "Add your Markdown files, start a call, and ask. The assistant answers from your documents — and says so when the answer isn't there.";
+  "Start a call and ask about anxiety, treatment options, clinical trials or where to get help. Answers come from the documents — and it says so when the answer isn't there.";
 const PRIMARY = { label: "Start a call", href: "/talk" };
-const SECONDARY = { label: "See how it works", href: "#how" };
+const SECONDARY = { label: "Browse topics", href: "/topics" };
 const PERKS = [
-  "Bring your own Markdown",
+  "Sample documents only",
   "Cites its sources",
   "Says when it doesn't know",
 ];

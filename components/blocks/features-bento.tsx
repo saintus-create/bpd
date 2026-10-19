@@ -5,13 +5,10 @@ import {
   BellIcon,
   BotIcon,
   CalendarIcon,
-  CloudIcon,
   CommandIcon,
-  CreditCardIcon,
   DatabaseIcon,
   GitBranchIcon,
   MailIcon,
-  MessageSquareIcon,
   SearchIcon,
   TrendingUpIcon,
   WebhookIcon,
@@ -29,53 +26,53 @@ import { OrbitingCircles } from "@/components/velora/orbiting-circles";
 import { cn } from "@/lib/utils";
 
 const HEADING = {
-  eyebrow: "How it works",
+  eyebrow: "What's inside",
   title: "Grounded answers, not guesses",
   description:
-    "Your Markdown files live in one folder. On every question the assistant searches them and answers only from the passages it finds — with the source filename attached.",
+    "Every answer comes from the sample mental health documents in the knowledge base — with the source file attached, so you can read it yourself.",
 };
 
 const CARDS = {
   integrations: {
-    name: "Every answer traces to a source",
-    description: "Retrieved passages come back labelled with the Markdown file they came from, so you can check them yourself.",
-    cta: "Read the setup guide",
+    name: "Built on named sources",
+    description: "The documents draw on guidance from organisations such as WHO, the NHS and NIMH — shown here as illustrative labels, not as an endorsement.",
+    cta: "Browse topics",
   },
   automations: {
     name: "One tool call, no ceremony",
     description: "The assistant calls search_knowledge mid-conversation and folds the result straight into its spoken reply.",
-    cta: "How the tool works",
+    cta: "Start a call",
   },
   analytics: {
     name: "Nothing to index by hand",
     description: "Every .md file in the knowledge folder is picked up automatically, subfolders included.",
-    cta: "Browse the knowledge folder",
+    cta: "See the documents",
   },
   search: {
-    name: "Keyword search over your docs",
-    description: "Each question is scored against your paragraphs and the five best passages are returned.",
-    cta: "Try a search",
+    name: "Search across every topic",
+    description: "Anxiety, depression, treatment, trials and crisis support — searched together, five best passages returned.",
+    cta: "Find a trial",
   },
   edge: {
-    name: "Ships with your app",
-    description: "The search endpoint is part of the Next.js app — served from wherever you deploy.",
-    cta: "Deployment notes",
+    name: "Where to get help",
+    description: "Crisis lines and services in India and internationally, listed by country.",
+    cta: "Get help now",
   },
 };
 
 const TAGS = [
-  "onboarding",
-  "pricing",
-  "API reference",
-  "release notes",
-  "security",
-  "support",
-  "getting started",
-  "changelog",
-  "billing",
-  "integrations",
-  "FAQ",
-  "glossary",
+  "anxiety",
+  "depression",
+  "panic",
+  "sleep",
+  "CBT",
+  "medication",
+  "clinical trials",
+  "crisis support",
+  "young people",
+  "bipolar",
+  "PTSD",
+  "wellbeing",
 ];
 
 // Revenue over the last 12 weeks, in thousands.
@@ -130,14 +127,14 @@ export function FeaturesBento() {
           <BentoGrid className="mt-16 md:grid-cols-2 lg:grid-cols-3">
             <BentoCard
               {...CARDS.integrations}
-              href="#"
+              href="/topics"
               className="md:col-span-2"
               background={<IntegrationsVisual />}
             />
-            <BentoCard {...CARDS.automations} href="#" background={<AutomationsVisual />} />
-            <BentoCard {...CARDS.analytics} href="#" background={<AnalyticsVisual />} />
-            <BentoCard {...CARDS.search} href="#" background={<SearchVisual />} />
-            <BentoCard {...CARDS.edge} href="#" background={<EdgeVisual />} />
+            <BentoCard {...CARDS.automations} href="/talk" background={<AutomationsVisual />} />
+            <BentoCard {...CARDS.analytics} href="/topics" background={<AnalyticsVisual />} />
+            <BentoCard {...CARDS.search} href="/clinical-trials" background={<SearchVisual />} />
+            <BentoCard {...CARDS.edge} href="/resources" background={<EdgeVisual />} />
           </BentoGrid>
         </BlurFade>
       </div>
@@ -192,13 +189,13 @@ function IntegrationsVisual() {
       <div ref={container} className="relative flex h-full items-center justify-between">
         <div className="flex h-full flex-col justify-between py-2">
           <Node ref={l1}>
-            <DatabaseIcon />
+            <span className="text-[11px] font-semibold tracking-tight">WHO</span>
           </Node>
           <Node ref={l2} className="-translate-x-2 sm:-translate-x-6">
-            <MailIcon />
+            <span className="text-[11px] font-semibold tracking-tight">NHS</span>
           </Node>
           <Node ref={l3}>
-            <CreditCardIcon />
+            <span className="text-[11px] font-semibold tracking-tight">NIMH</span>
           </Node>
         </div>
 
@@ -211,13 +208,13 @@ function IntegrationsVisual() {
 
         <div className="flex h-full flex-col justify-between py-2">
           <Node ref={r1}>
-            <CalendarIcon />
+            <span className="text-[11px] font-semibold tracking-tight">APA</span>
           </Node>
           <Node ref={r2} className="translate-x-2 sm:translate-x-6">
-            <MessageSquareIcon />
+            <span className="text-[11px] font-semibold tracking-tight">Mind</span>
           </Node>
           <Node ref={r3}>
-            <CloudIcon />
+            <span className="text-[11px] font-semibold tracking-tight">CTRI</span>
           </Node>
         </div>
 
@@ -300,7 +297,7 @@ function AnalyticsVisual() {
         <div>
           <p className="text-xs font-medium text-muted-foreground">Documents indexed</p>
           <p className="mt-1 text-3xl font-semibold tracking-tight">
-            <NumberTicker value={12} suffix=" files" />
+            <NumberTicker value={9} suffix=" files" />
           </p>
         </div>
         <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
