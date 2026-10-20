@@ -1,25 +1,18 @@
-import { getHumeAccessToken } from "@/utils/getHumeAccessToken";
-import nextDynamic from "next/dynamic";
+import { CartesiaVoice } from "@/components/cartesia/CartesiaVoice";
 
-// Fetch a fresh Hume access token per request. Without this the page is
-// statically prerendered at build time and the (short-lived) token is baked
-// into the static HTML.
+// Read CARTESIA_AGENT_ID at request time rather than baking it into the build.
 export const dynamic = "force-dynamic";
 
-const Chat = nextDynamic(() => import("@/components/Chat"), {
-  ssr: false,
-});
+export const metadata = {
+  title: "Talk — bpd",
+  description:
+    "Ask about mental health and hear the answer, grounded in a sample knowledge base.",
+};
 
-export default async function Page() {
-  const accessToken = await getHumeAccessToken();
-
-  if (!accessToken) {
-    throw new Error('Unable to get access token');
-  }
-
+export default function TalkPage() {
   return (
-    <div className={"grow flex flex-col"}>
-      <Chat accessToken={accessToken} />
+    <div className="grow flex flex-col">
+      <CartesiaVoice agentId={process.env.CARTESIA_AGENT_ID} />
     </div>
   );
 }
